@@ -17,7 +17,7 @@ export const NftList = ({ nfts = [], itemsPerRow }) => {
 
   const handleNavigateToNftCharacterChat = (id) => () => {
     const nftCharacterChatPath = generatePath(APP_PATHS.nftChat, {
-      nftId: id,
+      characterId: id,
     })
     navigate(nftCharacterChatPath)
   }
