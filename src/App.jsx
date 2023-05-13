@@ -18,7 +18,7 @@ function App() {
         <Route path={APP_PATHS.home} element={<HomePage />} />
         <Route path={APP_PATHS.nftList} element={<NFTList />} />
         <Route
-          path={APP_PATHS.characterPersona}
+          path={APP_PATHS.nftCharacteristics}
           element={<CharacterPersonallity />}
         />
         <Route path={APP_PATHS.characterStory} element={<CharacterStory />} />

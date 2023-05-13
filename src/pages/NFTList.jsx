@@ -22,10 +22,6 @@ export const NFTList = () => {
   return (
     <div>
       <NftList nfts={nfts} />
-
-      {nfts?.map((nft) => {
-        return nft.metadata.name
-      })}
       <Login />
     </div>
   )
