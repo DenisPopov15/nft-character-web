@@ -6,7 +6,7 @@ import { NftCard } from './nft-card'
 
 import { APP_PATHS } from 'paths'
 
-export const NftList = ({ nfts = [] }) => {
+export const NftList = ({ nfts = [], itemsPerRow }) => {
   const navigate = useNavigate()
   const handleNavigateToNftCharacterDetails = (id) => () => {
     const nftCharacterDetailsPath = generatePath(APP_PATHS.nftCharacteristics, {
@@ -16,14 +16,15 @@ export const NftList = ({ nfts = [] }) => {
   }
 
   return (
-    <Box
-      display="flex"
-      flexWrap="wrap"
-      justifyContent={{ base: 'center', md: 'space-between' }}
-    >
+<Box display="flex" justifyContent="flex-start" flexWrap="wrap">
       {!isEmpty(nfts) ? (
         nfts?.map((item) => {
           return (
+            <Box
+              key={item.id}
+              width={`calc(100% / ${itemsPerRow})`}
+              padding="18px"
+            >
             <NftCard
               key={item.id}
               metdaDataUrl={item.url}
@@ -36,10 +37,11 @@ export const NftList = ({ nfts = [] }) => {
               )}
               onCardClick={handleNavigateToNftCharacterDetails(item.id)}
             />
+            </Box>
           )
         })
       ) : (
-        <Box w="100%" p={{ base: '22px 20px', md: '22px 20px' }}>
+        <Box w="50%" p={{ base: '22px 20px', md: '22px 20px' }}>
           <Text variant="h6">No NFTs to show</Text>
         </Box>
       )}
