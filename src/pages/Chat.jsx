@@ -13,8 +13,7 @@ export const Chat = () => {
   const navigate = useNavigate()
   const params = useParams()
 
-  const [activeConversations, setActiveConversations] = useState([])
-  // const [activeConversations, setActiveConversations] = useState()
+  const [activeMessages, setActiveMessages] = useState([])
 
   const { characterId } = params
   useEffect(() => {
@@ -25,11 +24,11 @@ export const Chat = () => {
     }
   }, [navigate])
 
-  const addConversation = useCallback(
-    (c) => {
-      setActiveConversations((conversations) => [...conversations, c])
+  const addMessage = useCallback(
+    (m) => {
+      setActiveMessages((messages) => [...messages, m])
     },
-    [activeConversations]
+    [activeMessages]
   )
 
   const { data: conversations, isLoading } =
@@ -64,33 +63,22 @@ export const Chat = () => {
             )
           })
         )}
-        {activeConversations?.map((conversation) => {
+        {activeMessages?.map((message) => {
           return (
             <>
               <Message
-                key={`${conversation.id}_q`}
-                userInfo="You"
-                type="human"
-                text={conversation.query}
-                createdAt={conversation.createdAt}
-              />
-              <div style={{ float: 'left', clear: 'both' }}></div>
-              <Message
-                key={`${conversation.id}_r`}
-                userInfo="Token"
-                type="character"
-                text={conversation.response}
-                createdAt={conversation.createdAt}
+                key={message.key}
+                userInfo={message.userInfo}
+                type={message.type}
+                text={message.text}
+                createdAt={message.createdAt}
               />
               <div style={{ float: 'left', clear: 'both' }}></div>
             </>
           )
         })}
       </div>
-      <WriteMessage
-        nftCharacterId={characterId}
-        addConversation={addConversation}
-      />
+      <WriteMessage nftCharacterId={characterId} addMessage={addMessage} />
       <Login />
     </div>
   )
