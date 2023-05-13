@@ -4,8 +4,8 @@ import { APP_PATHS } from 'paths'
 import { useCreateNftCharacterStory } from 'shared/queries/nftCharacter'
 import { useCreateNftCharacterMutation } from 'shared/mutations/nftCharacter'
 import { environment } from 'environments'
-
-import { Login } from '../components/authentication/login'
+import styles from '../styles/home.module.css'
+import { Header } from '../components/header'
 import { CherecterStory } from '../components/character/character-story'
 
 export const CharacterStory = () => {
@@ -45,13 +45,23 @@ export const CharacterStory = () => {
   }
 
   return (
-    <div>
-      <CherecterStory
-        story={story?.story}
-        isLoading={isLoading}
-        onConfirmClick={handleCreateCharacter(nftId)}
-      />
-      <Login />
-    </div>
+    <>
+      <Header hideConnectButton={true} />
+      <div className={styles.landing}>
+        <div className={styles.hero}>
+          <div className={styles.content}>
+            <div className={styles.text}>
+              <div>
+                <CherecterStory
+                  story={story?.story}
+                  isLoading={isLoading}
+                  onConfirmClick={handleCreateCharacter(nftId)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }

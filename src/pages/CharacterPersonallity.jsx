@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams, generatePath } from 'react-router-dom'
 
 import { APP_PATHS } from 'paths'
-import { Login } from '../components/authentication/login'
 import { useBuildCharacterteristics } from 'shared/queries/nftCharacter'
 import { CherecterPersonallity } from '../components/character/character-personallity'
+import styles from '../styles/home.module.css'
+import { Header } from '../components/header'
 
 export const CharacterPersonallity = () => {
   const navigate = useNavigate()
@@ -29,13 +30,23 @@ export const CharacterPersonallity = () => {
   }
 
   return (
-    <div>
-      <CherecterPersonallity
-        characteristics={characteristics?.characteristics}
-        isLoading={isLoading}
-        onConfirmClick={handleNavigateToNftCharacterStory(nftId)}
-      />
-      <Login />
-    </div>
+    <>
+      <Header hideConnectButton={true} />
+      <div className={styles.landing}>
+        <div className={styles.hero}>
+          <div className={styles.content}>
+            <div className={styles.text}>
+              <div>
+                <CherecterPersonallity
+                  characteristics={characteristics?.characteristics}
+                  isLoading={isLoading}
+                  onConfirmClick={handleNavigateToNftCharacterStory(nftId)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }

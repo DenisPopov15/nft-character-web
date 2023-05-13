@@ -8,7 +8,7 @@ export const CherecterStory = ({
 }) => (
   <>
     <Box>
-      <Text color="black" variant="h3">
+      <Text color="white" variant="h3">
         {story}
       </Text>
     </Box>

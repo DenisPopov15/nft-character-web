@@ -60,7 +60,7 @@ export const Login = () => {
           style={{ marginTop: 15 }}
           onClick={handleWalletLogIn}
         >
-          Login
+          Connect Wallet
         </Button>
       )}
       {localStorage.getItem('AUTH_TOKEN') && (
