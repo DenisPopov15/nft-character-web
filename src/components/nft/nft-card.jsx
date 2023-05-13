@@ -16,15 +16,15 @@ export const NftCard = ({
     cursor={'pointer'}
   >
     <Box>
-      <Text color="black" variant="h3">
+      <Text color="white" variant="h3">
         {name}
       </Text>
     </Box>
-    <Box>
-      <Text color="black" variant="h3">
+    {/* <Box>
+      <Text color="white" variant="h3">
         {description}
       </Text>
-    </Box>
+</Box> */}
     <Box>
       <Image src={imageUrl} alt={name} />
     </Box>

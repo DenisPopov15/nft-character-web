@@ -9,6 +9,7 @@
   
   .header {
     height: 100px;
+    background: #190631;
   }
   
   .landing {
@@ -22,6 +23,12 @@
     max-width: 940px;
     width: 100%;
     padding-top: 120px;
+    margin: 0 auto;
+  }
+  .page {
+    max-width: 940px;
+    width: 100%;
+    padding-top:36px;
     margin: 0 auto;
   }
   
