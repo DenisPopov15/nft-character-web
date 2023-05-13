@@ -6,6 +6,7 @@ export const NftCard = ({
   name,
   // description,
   // attributes,
+  // isCharacterExists,
   imageUrl,
   onCardClick,
 }) => (

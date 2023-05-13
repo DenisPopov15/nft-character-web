@@ -15,10 +15,22 @@ export const NftList = ({ nfts = [], itemsPerRow }) => {
     navigate(nftCharacterDetailsPath)
   }
 
+  const handleNavigateToNftCharacterChat = (id) => () => {
+    const nftCharacterChatPath = generatePath(APP_PATHS.nftChat, {
+      nftId: id,
+    })
+    navigate(nftCharacterChatPath)
+  }
+
   return (
     <Box display="flex" justifyContent="flex-start" flexWrap="wrap">
       {!isEmpty(nfts) ? (
         nfts?.map((item) => {
+          let onCardClick = handleNavigateToNftCharacterDetails(item.id)
+          if (item.isCharacterExists) {
+            onCardClick = handleNavigateToNftCharacterChat(item.nftCharacterId)
+          }
+
           return (
             <Box
               key={item.id}
@@ -27,6 +39,7 @@ export const NftList = ({ nfts = [], itemsPerRow }) => {
             >
               <NftCard
                 key={item.id}
+                isCharacterExists={item.isCharacterExists}
                 metdaDataUrl={item.url}
                 attributes={item.metadata.attributes}
                 name={item.metadata.name}
@@ -35,7 +48,7 @@ export const NftList = ({ nfts = [], itemsPerRow }) => {
                   'ipfs://',
                   'https://ipfs.io/ipfs/'
                 )}
-                onCardClick={handleNavigateToNftCharacterDetails(item.id)}
+                onCardClick={onCardClick}
               />
             </Box>
           )
