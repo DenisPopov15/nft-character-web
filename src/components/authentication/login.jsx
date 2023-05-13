@@ -43,7 +43,7 @@ export const Login = () => {
       await onWalletLogin(signedMessage, {
         onSuccess: async ({ token, nfts }) => {
           localStorage.setItem('AUTH_TOKEN', token)
-          localStorage.setItem('NFTS', nfts)
+          localStorage.setItem('NFTS', JSON.stringify(nfts))
           await queryCache.refetchQueries()
           navigate(APP_PATHS.nftList)
         },
