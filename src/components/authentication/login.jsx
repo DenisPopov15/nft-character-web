@@ -55,7 +55,9 @@ export const Login = () => {
     <div>
       {!localStorage.getItem('AUTH_TOKEN') && (
         <Button
-          colorScheme="blue"
+          bgGradient={['linear(to-br, #F503C8, #581C95, #00EBCF)']}
+          _hover={{ bg: '#581C95' }}
+          color="white"
           width="100%"
           style={{ marginTop: 15 }}
           onClick={handleWalletLogIn}
@@ -65,7 +67,9 @@ export const Login = () => {
       )}
       {localStorage.getItem('AUTH_TOKEN') && (
         <Button
-          colorScheme="blue"
+          bgGradient={['linear(to-br, #F503C8, #581C95, #00EBCF)']}
+          _hover={{ bg: '#581C95' }}
+          color="white"
           width="100%"
           style={{ marginTop: 15 }}
           onClick={handleLogout}
