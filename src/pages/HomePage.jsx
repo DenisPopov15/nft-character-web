@@ -4,7 +4,7 @@ import { APP_PATHS } from 'paths'
 import { Login } from '../components/authentication/login'
 import { Box, Text, Image } from '@chakra-ui/react'
 import styles from '../styles/home.module.css'
-import { Header } from '../components/Header'
+import { Header } from '../components/header'
 
 export const HomePage = () => {
   const navigate = useNavigate()

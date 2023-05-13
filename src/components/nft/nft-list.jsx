@@ -16,7 +16,7 @@ export const NftList = ({ nfts = [], itemsPerRow }) => {
   }
 
   return (
-<Box display="flex" justifyContent="flex-start" flexWrap="wrap">
+    <Box display="flex" justifyContent="flex-start" flexWrap="wrap">
       {!isEmpty(nfts) ? (
         nfts?.map((item) => {
           return (
@@ -25,18 +25,18 @@ export const NftList = ({ nfts = [], itemsPerRow }) => {
               width={`calc(100% / ${itemsPerRow})`}
               padding="18px"
             >
-            <NftCard
-              key={item.id}
-              metdaDataUrl={item.url}
-              attributes={item.metadata.attributes}
-              name={item.metadata.name}
-              description={item.metadata.description}
-              imageUrl={item.metadata.image.replace(
-                'ipfs://',
-                'https://ipfs.io/ipfs/'
-              )}
-              onCardClick={handleNavigateToNftCharacterDetails(item.id)}
-            />
+              <NftCard
+                key={item.id}
+                metdaDataUrl={item.url}
+                attributes={item.metadata.attributes}
+                name={item.metadata.name}
+                description={item.metadata.description}
+                imageUrl={item.metadata.image.replace(
+                  'ipfs://',
+                  'https://ipfs.io/ipfs/'
+                )}
+                onCardClick={handleNavigateToNftCharacterDetails(item.id)}
+              />
             </Box>
           )
         })

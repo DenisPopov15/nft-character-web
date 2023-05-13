@@ -4,7 +4,7 @@ import { Box, Text, Image } from '@chakra-ui/react'
 export const NftCard = ({
   // metdaDataUrl,
   name,
-  description,
+  // description,
   // attributes,
   imageUrl,
   onCardClick,
