@@ -1,0 +1,115 @@
+.container {
+    min-height: 100vh;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .header {
+    height: 100px;
+  }
+  
+  .landing {
+    width: 100%;
+    display: flex;
+    background: #190631;
+    height: 100vh;
+  }
+  
+  .hero {
+    max-width: 940px;
+    width: 100%;
+    padding-top: 120px;
+    margin: 0 auto;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 auto;
+    padding-top: 120px;
+  }
+  
+  .text {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .image {
+    flex: 1;
+  }
+  
+  .connectWallet {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+  .connectWallet button {
+    align-self: flex-start;
+    cursor: pointer;
+  }
+
+  
+  .allComponents {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 940px;
+    width: 100%;
+  }
+  
+  .main {
+    padding: 5rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer {
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .title a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .title a:hover,
+  .title a:focus,
+  .title a:active {
+    text-decoration: underline;
+  }
+  
+  .title {
+    margin: 0;
+    line-height: 1.15;
+    font-size: 4rem;
+  }
+  
+  .title,
+  .description {
+    text-align: center;
+  }
+  
+  .description {
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+  
