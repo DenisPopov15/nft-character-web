@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect, useReducer } from 'react'
 import { useQueryClient } from 'react-query'
-import { Button } from '@chakra-ui/react'
+// import { Button } from '@chakra-ui/react'
 
-import { connectMetamask } from 'services/metamask/index'
-import { signMessage } from 'services/metamask/provider'
-import { useWalletLoginMutation } from 'shared/mutations/user'
+// import { connectMetamask } from 'services/metamask/index'
+// import { signMessage } from 'services/metamask/provider'
+// import { useWalletLoginMutation } from 'shared/mutations/user'
 
-// import { useNavigate } from 'react-router-dom'
-// import { APP_PATHS } from 'paths'
-import { environment } from 'environments'
+// import { environment } from 'environments'
 
 const UserStateContext = React.createContext({
   user: {},
@@ -35,7 +33,7 @@ const reducer = (state, action) => {
 export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, { user: {} })
   const queryCache = useQueryClient()
-  const { mutate: onWalletLogin } = useWalletLoginMutation()
+  // const { mutate: onWalletLogin } = useWalletLoginMutation()
   const user = null
 
   const handleDispatch = useCallback((action) => dispatch(action), [])
@@ -44,40 +42,38 @@ export const UserContextProvider = ({ children }) => {
     localStorage.removeItem('AUTH_TOKEN')
     localStorage.removeItem('NFTS')
     await queryCache.invalidateQueries()
-    // const navigate = useNavigate()
-    // navigate(APP_PATHS.home)
+
     handleDispatch({ type: 'logout', payload: { user: {} } })
   }, [handleDispatch])
 
-  const handleWalletLogIn = async () => {
-    let signedMessage
-    const message = environment.LOGIN_PAYLOAD
-    const expiresAt = Date.now() + 1 * 60 * 1000
-    const dataSignObject = { expiresAt, payload: message }
-    const dataSign = JSON.stringify(dataSignObject)
-    try {
-      if (window.ethereum) {
-        await connectMetamask(window.ethereum)
-        signedMessage = await signMessage(window.ethereum, dataSign)
-      } else {
-        window.alert('Please install Metamask')
-      }
-    } catch (e) {
-      console.log(e)
-    }
-    if (signedMessage) {
-      signedMessage.nftCollectionAddress = environment.NFT_COLLECTION_ADDRESS
-      await onWalletLogin(signedMessage, {
-        onSuccess: async ({ token, nfts }) => {
-          localStorage.setItem('AUTH_TOKEN', token)
-          localStorage.setItem('NFTS', nfts)
-          await queryCache.refetchQueries()
-          // const navigate = useNavigate()
-          // navigate(APP_PATHS.nftList)
-        },
-      })
-    }
-  }
+  // const handleWalletLogIn = async () => {
+  //   let signedMessage
+  //   const message = environment.LOGIN_PAYLOAD
+  //   const expiresAt = Date.now() + 1 * 60 * 1000
+  //   const dataSignObject = { expiresAt, payload: message }
+  //   const dataSign = JSON.stringify(dataSignObject)
+  //   try {
+  //     if (window.ethereum) {
+  //       await connectMetamask(window.ethereum)
+  //       signedMessage = await signMessage(window.ethereum, dataSign)
+  //     } else {
+  //       window.alert('Please install Metamask')
+  //     }
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  //   if (signedMessage) {
+  //     signedMessage.nftCollectionAddress = environment.NFT_COLLECTION_ADDRESS
+  //     await onWalletLogin(signedMessage, {
+  //       onSuccess: async ({ token, nfts }) => {
+  //         localStorage.setItem('AUTH_TOKEN', token)
+  //         console.log('nfts!!', nfts)
+  //         localStorage.setItem('NFTS', nfts)
+  //         await queryCache.refetchQueries()
+  //       },
+  //     })
+  //   }
+  // }
   useEffect(() => {
     if (user) {
       handleDispatch({
@@ -102,26 +98,6 @@ export const UserContextProvider = ({ children }) => {
         }}
       >
         {children}
-        {!localStorage.getItem('AUTH_TOKEN') && (
-          <Button
-            colorScheme="blue"
-            width="100%"
-            style={{ marginTop: 15 }}
-            onClick={handleWalletLogIn}
-          >
-            Login
-          </Button>
-        )}
-        {localStorage.getItem('AUTH_TOKEN') && (
-          <Button
-            colorScheme="blue"
-            width="100%"
-            style={{ marginTop: 15 }}
-            onClick={handleLogout}
-          >
-            Logout
-          </Button>
-        )}
       </UserDispatchContext.Provider>
     </UserStateContext.Provider>
   )
