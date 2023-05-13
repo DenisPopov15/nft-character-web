@@ -21,8 +21,8 @@ function App() {
           path={APP_PATHS.nftCharacteristics}
           element={<CharacterPersonallity />}
         />
-        <Route path={APP_PATHS.characterStory} element={<CharacterStory />} />
-        <Route path={APP_PATHS.chat} element={<Chat />} />
+        <Route path={APP_PATHS.nftStory} element={<CharacterStory />} />
+        <Route path={APP_PATHS.nftChat} element={<Chat />} />
       </Routes>
     </div>
   )

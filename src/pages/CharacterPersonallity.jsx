@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useNavigate, useParams, generatePath } from 'react-router-dom'
+
 import { APP_PATHS } from 'paths'
 import { Login } from '../components/authentication/login'
+import { useBuildCharacterteristics } from 'shared/queries/nftCharacter'
+import { CherecterPersonallity } from '../components/character/character-personallity'
 
 export const CharacterPersonallity = () => {
   const navigate = useNavigate()
   const params = useParams()
-
-  const [characteristics, setCharacteristics] = useState()
 
   const { nftId } = params
 
@@ -17,30 +18,23 @@ export const CharacterPersonallity = () => {
     if (!auth) {
       navigate(APP_PATHS.home)
     }
-
-    const pulledCharacteristics = localStorage.getItem(nftId)
-    // useBuildCharacterteristics
-    setCharacteristics(pulledCharacteristics)
   }, [navigate])
 
-  // const [characterstics, setCharacterstics] = useState()
-
-  // const buildCharacterPersona = async (nftCollectionAddress, nftId) => {
-  //   const endpoint = '/api/buildNftCharacterCharacteristics'
-  //   const fullEndpoint = `${endpoint}?nftCollectionAddress=${nftCollectionAddress}&nftId=${nftId}`
-  //   const { data } = await axios.get(fullEndpoint)
-
-  //   setCharacterstics(data)
-  // }
-
-  // useEffect(() => {
-  //   buildCharacterPersona()
-  // }, [])
+  const { data: characteristics, isLoading } = useBuildCharacterteristics(nftId)
+  const handleNavigateToNftCharacterStory = (id) => () => {
+    const nftCharacterStoryPath = generatePath(APP_PATHS.nftStory, {
+      nftId: id,
+    })
+    navigate(nftCharacterStoryPath)
+  }
 
   return (
     <div>
-      {characteristics}
-      Character Personallity
+      <CherecterPersonallity
+        characteristics={characteristics?.characteristics}
+        isLoading={isLoading}
+        onConfirmClick={handleNavigateToNftCharacterStory(nftId)}
+      />
       <Login />
     </div>
   )

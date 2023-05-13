@@ -39,3 +39,22 @@ export const useBuildCharacterteristics = (nftId) => {
     }
   )
 }
+
+export const useCreateNftCharacterStory = (nftId) => {
+  const toast = useToast()
+  const data = {
+    nftCollectionAddress: environment.NFT_COLLECTION_ADDRESS,
+    nftId,
+  }
+  return useQuery(
+    [QueriesKeysEnum.story, nftId],
+    () => axios.post('/createNftCharacterStory', data),
+    {
+      enabled: !!nftId,
+      retry: false,
+      onError: (error) => {
+        toast({ position: 'top-right', status: 'error', title: error.message })
+      },
+    }
+  )
+}
