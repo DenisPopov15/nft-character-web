@@ -3,6 +3,7 @@ import React from 'react'
 import { useCreateConversationMutation } from 'shared/mutations/conversation'
 
 import { useState } from 'react'
+import styles from '../../styles/home.module.css'
 
 export const WriteMessage = ({ nftCharacterId, addMessage }) => {
   const [writeMessageData, setWriteMessageData] = useState({ message: '' })
@@ -60,7 +61,7 @@ export const WriteMessage = ({ nftCharacterId, addMessage }) => {
   return (
     <textarea
       rows="3"
-      className="msg-write-div"
+      className={styles.msgWrite}
       onChange={handleChange}
       onKeyPress={sendMessage}
       value={writeMessageData.message}

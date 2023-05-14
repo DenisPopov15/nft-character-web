@@ -4,8 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Spinner } from '@chakra-ui/react'
 import { APP_PATHS } from 'paths'
 import { useCharacterConversationsList } from 'shared/queries/conversation'
-
-import { Login } from '../components/authentication/login'
+import { Header } from '../components/header'
 import { Message } from '../components/chat/message'
 import { WriteMessage } from '../components/chat/writeMessage'
 
@@ -35,51 +34,53 @@ export const Chat = () => {
     useCharacterConversationsList(characterId)
 
   return (
-    <div>
+    <>
+      <Header hideConnectButton={true} />
       <div>
-        {isLoading == true ? (
-          <Spinner />
-        ) : (
-          conversations?.map((conversation) => {
+        <div>
+          {isLoading == true ? (
+            <Spinner />
+          ) : (
+            conversations?.map((conversation) => {
+              return (
+                <>
+                  <Message
+                    key={`${conversation.id}_q`}
+                    userInfo="You"
+                    type="human"
+                    text={conversation.query}
+                    createdAt={conversation.createdAt}
+                  />
+                  <div style={{ float: 'left', clear: 'both' }}></div>
+                  <Message
+                    key={`${conversation.id}_r`}
+                    userInfo="Token"
+                    type="character"
+                    text={conversation.response}
+                    createdAt={conversation.createdAt}
+                  />
+                  <div style={{ float: 'left', clear: 'both' }}></div>
+                </>
+              )
+            })
+          )}
+          {activeMessages?.map((message) => {
             return (
               <>
                 <Message
-                  key={`${conversation.id}_q`}
-                  userInfo="You"
-                  type="human"
-                  text={conversation.query}
-                  createdAt={conversation.createdAt}
-                />
-                <div style={{ float: 'left', clear: 'both' }}></div>
-                <Message
-                  key={`${conversation.id}_r`}
-                  userInfo="Token"
-                  type="character"
-                  text={conversation.response}
-                  createdAt={conversation.createdAt}
+                  key={message.key}
+                  userInfo={message.userInfo}
+                  type={message.type}
+                  text={message.text}
+                  createdAt={message.createdAt}
                 />
                 <div style={{ float: 'left', clear: 'both' }}></div>
               </>
             )
-          })
-        )}
-        {activeMessages?.map((message) => {
-          return (
-            <>
-              <Message
-                key={message.key}
-                userInfo={message.userInfo}
-                type={message.type}
-                text={message.text}
-                createdAt={message.createdAt}
-              />
-              <div style={{ float: 'left', clear: 'both' }}></div>
-            </>
-          )
-        })}
+          })}
+        </div>
+        <WriteMessage nftCharacterId={characterId} addMessage={addMessage} />
       </div>
-      <WriteMessage nftCharacterId={characterId} addMessage={addMessage} />
-      <Login />
-    </div>
+    </>
   )
 }

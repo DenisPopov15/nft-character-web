@@ -60,6 +60,12 @@
   cursor: pointer;
 }
 
+.msgWrite {
+  max-width: 940px;
+  width: 100%;
+  resize: none;
+  border: 1px solid #0b0a0a;
+}
 
 .allComponents {
   margin-left: auto;
