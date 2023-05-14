@@ -1,5 +1,18 @@
 # TokenTalk
 
+## UI
+
+![](docs/nft-charcater-ui.png)
+
+## Architecture/Flow
+
+![](docs/ChatNFT-User-Journey.jpg)
+
+## DEMO
+
+[3 minutes demo video](https://www.loom.com/share/12cced9c83b54f28b45e010a12bfa8a1)
+
+
 TokenTalk is an innovative project that combines the power of artificial intelligence (AI) with non-fungible tokens (NFTs) to give life to your tokens by infusing them with unique and stable personalities. With TokenTalk, you can experience the future of NFT personalized interaction, unlocking a whole new level of engagement and immersion in the world of NFT collections.
 
 ## Key Functionality
