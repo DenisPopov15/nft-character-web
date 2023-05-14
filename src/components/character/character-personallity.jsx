@@ -8,7 +8,7 @@ export const CherecterPersonallity = ({
 }) => (
   <>
     <Box>
-      <Text color="black" variant="h3">
+      <Text color="white" variant="h3" style={{ display: 'block' }}>
         {characteristics}
       </Text>
     </Box>
